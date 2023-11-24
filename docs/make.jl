@@ -12,14 +12,14 @@ makedocs(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://biplab37.github.io/KineticEquation.jl",
         edit_link="main",
-        assets=String[],
+        assets=String[]
     ),
     pages=[
         "Home" => "index.md",
-    ],
+    ]
 )
 
-deploydocs(;
-    repo="github.com/biplab37/KineticEquation.jl",
-    devbranch="main",
-)
+# deploydocs(;
+#     repo="github.com/biplab37/KineticEquation.jl",
+#     devbranch="main",
+# )
