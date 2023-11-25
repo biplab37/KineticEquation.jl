@@ -4,4 +4,7 @@
 /Manifest.toml
 /docs/Manifest.toml
 /docs/build/
-work/ .vscode/ docs/build/ docs/Manifest.toml
+work/
+.vscode/
+docs/build/
+docs/Manifest.toml

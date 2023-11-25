@@ -1,3 +1,8 @@
+"""
+    f_atk(k1, k2, p::Pulse, initial_value=[0.0, 0.0, 0.0])
+
+Calculate the distribution function for a given pulse and k1, k2 values. Returns f u and v.
+"""
 function f_atk(k1, k2, p::Pulse, initial_value=[0.0, 0.0, 0.0])
     if k1 == 0 && k2 == 0
         return initial_value
@@ -6,6 +11,11 @@ function f_atk(k1, k2, p::Pulse, initial_value=[0.0, 0.0, 0.0])
     return solve(prob, Tsit5())(p.finish)
 end
 
+"""
+    distribution_f(kxrange, kyrange, p::Pulse)
+
+Calculate the distribution function for a given pulse and range of kx and ky values. Returns the distribution function as a 2D array.
+"""
 function distribution_f(kxrange, kyrange, p::Pulse)
     dist_f = zeros(length(kxrange), length(kyrange))
     for (i, kx) in enumerate(kxrange)
@@ -16,6 +26,28 @@ function distribution_f(kxrange, kyrange, p::Pulse)
     return dist_f
 end
 
+"""
+    distribution_list(kxrange, kyrange, p::Pulse)
+
+Calculate the distribution function for a given pulse and range of kx and ky values. Returns an array containg the kx, ky and f(kx, ky) values.
+"""
+function distribution_list(kxrange, kyrange, p::Pulse)
+    dist_f = zeros(length(kxrange) * length(kyrange), 3)
+    i = 1
+    for kx in kxrange
+        for ky in kyrange
+            dist_f[i, :] .= [kx, ky, f_atk(kx, ky, p)[1]]
+            i += 1
+        end
+    end
+    return dist_f
+end
+
+"""
+    fsection_x(kx, kyrange, p::Pulse)
+
+Calculate the distribution function for a given pulse and range of ky values for a given kx value. Returns the distribution function as a 1D array.
+"""
 function fsection_x(kx, kyrange, p::Pulse)
     dist_f = zeros(length(kyrange))
     for (j, ky) in enumerate(kyrange)
@@ -24,6 +56,11 @@ function fsection_x(kx, kyrange, p::Pulse)
     return dist_f
 end
 
+"""
+    fsection_y(kxrange, ky, p::Pulse)
+
+Calculate the distribution function for a given pulse and range of kx values for a given ky value. Returns the distribution function as a 1D array.
+"""
 function fsection_y(kxrange, ky, p::Pulse)
     dist_f = zeros(length(kxrange))
     for (i, kx) in enumerate(kxrange)
@@ -32,4 +69,4 @@ function fsection_y(kxrange, ky, p::Pulse)
     return dist_f
 end
 
-export f_atk, distribution_f, fsection_x, fsection_y
+export f_atk, distribution_f, fsection_x, fsection_y, distribution_list
