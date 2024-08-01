@@ -69,22 +69,26 @@ function fsection_y(kxrange, ky, p::Pulse)
     return dist_f
 end
 
-function f_atk_func(k1, k2, p::Pulse, initial_value=[0.0, 0.0, 0.0])
+function f_atk_func(k1, k2, t, p::Pulse, initial_value=[0.0, 0.0, 0.0])::Float64
     if k1 == 0 && k2 == 0
-        return initial_value
+        return initial_value[1]
     end
     prob = ODEProblem(odes!, initial_value, (p.start, p.finish), [[k1, k2], p])
-    return solve(prob, Tsit5())
+    return solve(prob, Tsit5())(t)[1]
 end
 
-function density(t, p::Pulse; initial_value=[0.0, 0.0, 0.0], region=p.Amp * [-1.0 1.0; -1.0 1.0])
-    return quadgk((kx, ky) -> f_atk_func(kx, ky, p, initial_value)(t), eachcol(region)[1], eachcol(region)[2])[1]
+function f(k)
+    sol = f_atk_func(k[1], k[2], ConstantPulse(), [0.0, 0.0, 0.0])
+    return sol(0.1)[1]
 end
 
-function density(trange::AbstractVector, p::Pulse; initial_value=[0.0, 0.0, 0.0], region=p.Amp * [-1.0 1.0; -1.0 1.0])
-    d_list = zeros(trange)
+function density(t, p::Pulse, initial_value=[0.0, 0.0, 0.0], region=[-10.0 10.0; -10.0 10.0])
+    return hcubature(k -> f_atk_func(k[1], k[2], t, p, initial_value), [-10.0, -10.0], [10.0, 1.0], rtol=1e-3)[1]
+end
+function density(trange::AbstractVector, p::Pulse, initial_value=[0.0, 0.0, 0.0], region=[-1.0 1.0; -1.0 1.0])
+    d_list = zeros(length(trange))
     for (i, t) in enumerate(trange)
-        d_list[i] = density(t, p, initial_value=initial_value, region=region)
+        d_list[i] = density(t, p, initial_value, region)
     end
     return d_list
 end
