@@ -11,4 +11,7 @@ include("solution.jl")
 include("rate.jl")
 include("plot_recipes.jl")
 
+## Electron motion calculation with time independent basis.
+include("dynamics/electron_motion.jl")
+
 end
