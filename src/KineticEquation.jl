@@ -13,5 +13,6 @@ include("plot_recipes.jl")
 
 ## Electron motion calculation with time independent basis.
 include("dynamics/electron_motion.jl")
+include("dynamics/classical_path.jl")
 
 end
