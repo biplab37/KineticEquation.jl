@@ -68,4 +68,4 @@ function new_time_step(momenta, x)
     return -im * (10 / 6.5) * H0(momenta) * x
 end
 
-export fields_atk
+export fields_atk, wave_function_atk, fields_atk!
