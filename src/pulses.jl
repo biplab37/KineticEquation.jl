@@ -85,7 +85,7 @@ Base.@kwdef mutable struct GaussianPulse <: LinearPulse
     Amp = 0.1
     σ = 1.0
     E = t -> [Amp * exp(-t^2 / (2 * σ^2)), 0.0]
-    A = t -> [-Amp * (sqrt(π/2)*σ) * (erf(t/(sqrt(2)*σ))), 0.0]
+    A = t -> [-Amp * (sqrt(π / 2) * σ) * (erf(t / (sqrt(2) * σ))), 0.0]
     start = -5.0
     finish = 5.0
 end
@@ -93,22 +93,21 @@ end
 Base.@kwdef struct SincPulse <: LinearPulse
     Amp = 0.1
     σ = 1.0
-    E = t -> [Amp * sinc(t/σ), 0.0]
-    A = t -> [-Amp * σ *(π/2  + sinint(t/σ)) , 0.0]
+    E = t -> [Amp * sinc(t / σ), 0.0]
+    A = t -> [-Amp * σ * (π / 2 + sinint(t / σ)), 0.0]
     start = -5.0
     finish = 5.0
 end
 
-# TODO: Complete the implementation of GaussianHarmonicPulse
-Base.@kwdef mutable struct GaussianHarmonicPulse <: Pulse
+#TODO: Complete the implementation of GaussianHarmonicPulse
+Base.@kwdef mutable struct GaussianHarmonicPulse <: LinearPulse
     ω = 1.0
     Amp = 0.1
     σ = 1.0
     E = t -> Amp * [exp(-t^2 / (2 * σ^2)) * cos(ω * t), 0.0]
-    A = t-> Amp*exp(-t^2/(2*σ^2))*sqrt(π/2)*(2 + erf((t*σ^2 - im*ω)/(sqrt(2)*σ)) + erf((t*σ^2 + im*ω)/(sqrt(2)*σ)))/(2*σ)
+    A = t -> -Amp * exp(-t^2 / (2 * σ^2)) * sqrt(π / 2) * (2 + erf((t * σ^2 - im * ω) / (sqrt(2) * σ)) + erf((t * σ^2 + im * ω) / (sqrt(2) * σ))) / (2 * σ)
     start = -5.0
     finish = 5.0
 end
-
 
 export Pulse, CustomPulse, CustomPulseA, SauterPulse, ConstantPulse, HarmonicPulse, CircularGaussianPulseA, GaussianPulse

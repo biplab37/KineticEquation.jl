@@ -33,7 +33,8 @@ function fields_atk(k0, initial, Fields::Function, timerange)
     delta_t = timerange[2] - timerange[1]
     time_data[1, :] = initial
     for (i, t) in enumerate(timerange)
-        time_data[i+1, :] = time_data[i, :] .+ delta_t * new_time_step(k0, time_data[i, :], t, Fields)
+        k = momentum_evolution(k0, t, Fields)
+        time_data[i+1, :] = time_data[i, :] .+ delta_t * new_time_step(k, time_data[i, :])
     end
     return time_data
 end
@@ -43,7 +44,8 @@ function fields_atk!(time_data, k0, initial, pulse::Pulse)
     delta_t = timerange[2] - timerange[1]
     time_data[1, :] = initial
     for (i, t) in enumerate(timerange)
-        time_data[i+1, :] = time_data[i, :] .+ delta_t * new_time_step(k0, time_data[i, :], t, pulse.A)
+        k = momentum_evolution(k0, t, pulse.A)
+        time_data[i+1, :] = time_data[i, :] .+ delta_t * new_time_step(k, time_data[i, :])
     end
     return nothing
 end
