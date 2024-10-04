@@ -74,7 +74,7 @@ Base.@kwdef struct CircularGaussianPulseA <: CircularPulse
     carier_freq::Real = 1.0
     time_width = 1.0
     bias = 0.0
-    E = t -> Amp * exp(-t^2 / (2 * time_width^2)) * [-sin(carier_freq * t + bias), cos(carier_freq * t + bias)]
+    A = t -> Amp * exp(-t^2 / (2 * time_width^2)) * [-sin(carier_freq * t + bias), cos(carier_freq * t + bias)]
     #TODO: finish this part
     #A = t-> Amp * exp(-t^2 / (2 * time_width^2)) *sqrt(π/2)
     start = -5.0

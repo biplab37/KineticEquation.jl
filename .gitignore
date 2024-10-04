@@ -1,10 +1,10 @@
 *.jl.*.cov
 *.jl.cov
 *.jl.mem
-/Manifest.toml
 /docs/Manifest.toml
 /docs/build/
 work/
 .vscode/
 docs/build/
 docs/Manifest.toml
+.ipynb_checkpoints
