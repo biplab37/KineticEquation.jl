@@ -1,3 +1,5 @@
+# This file contains some functions to solve the semiconductor Bloch equations.
+
 function A_values(k, k0; a=1.0, ϵh=1.0)
     fk = ff(k, a=a)
     eit = ff(k0) / abs(ff(k0))

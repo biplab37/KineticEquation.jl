@@ -8,3 +8,6 @@ work/
 docs/build/
 docs/Manifest.toml
 .ipynb_checkpoints
+/*.pdf
+/*.png
+/*.svg

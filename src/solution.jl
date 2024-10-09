@@ -14,7 +14,8 @@ end
 """
     distribution_f(kxrange, kyrange, p::Pulse)
 
-Calculate the distribution function for a given pulse and range of kx and ky values. Returns the distribution function as a 2D array.
+Calculate the distribution function for a given pulse and range of kx and ky values.
+Returns the distribution function as a 2D array.
 """
 function distribution_f(kxrange, kyrange, p::Pulse)
     dist_f = zeros(length(kxrange), length(kyrange))
@@ -29,7 +30,8 @@ end
 """
     distribution_list(kxrange, kyrange, p::Pulse)
 
-Calculate the distribution function for a given pulse and range of kx and ky values. Returns an array containg the kx, ky and f(kx, ky) values.
+Calculate the distribution function for a given pulse and range of kx and ky values.
+Returns an array containg the kx, ky and f(kx, ky) values.
 """
 function distribution_list(kxrange, kyrange, p::Pulse)
     dist_f = zeros(length(kxrange) * length(kyrange), 3)
@@ -46,7 +48,8 @@ end
 """
     fsection_x(kx, kyrange, p::Pulse)
 
-Calculate the distribution function for a given pulse and range of ky values for a given kx value. Returns the distribution function as a 1D array.
+Calculate the distribution function for a given pulse and range of ky values for a given kx value.
+Returns the distribution function as a 1D array.
 """
 function fsection_x(kx, kyrange, p::Pulse)
     dist_f = zeros(length(kyrange))
@@ -59,7 +62,8 @@ end
 """
     fsection_y(kxrange, ky, p::Pulse)
 
-Calculate the distribution function for a given pulse and range of kx values for a given ky value. Returns the distribution function as a 1D array.
+Calculate the distribution function for a given pulse and range of kx values for a given ky value.
+Returns the distribution function as a 1D array.
 """
 function fsection_y(kxrange, ky, p::Pulse)
     dist_f = zeros(length(kxrange))

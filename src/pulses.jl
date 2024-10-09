@@ -1,3 +1,5 @@
+# Type definitions and implementation of different pulses.
+
 abstract type Pulse end
 
 abstract type LinearPulse <: Pulse end
@@ -6,7 +8,9 @@ abstract type CircularPulse <: Pulse end
 """
     CustomPulse(args, E, A, start, finish)
 
-This custom struct can be used to define a custom pulse. You need to pass the function for the electric field and the vector potential. The functions can take any number of arguments but the first argument should be time. The `args` should be passed as a tuple or an array.
+This custom struct can be used to define a custom pulse. You need to pass the function for
+the electric field and the vector potential. The functions can take any number of arguments
+but the first argument should be time. The `args` should be passed as a tuple or an array.
 """
 Base.@kwdef mutable struct CustomPulse <: Pulse
     args::Any
@@ -110,4 +114,4 @@ Base.@kwdef mutable struct GaussianHarmonicPulse <: LinearPulse
     finish = 5.0
 end
 
-export Pulse, CustomPulse, CustomPulseA, SauterPulse, ConstantPulse, HarmonicPulse, CircularGaussianPulseA, GaussianPulse
+export Pulse, CustomPulse, CustomPulseA, SauterPulse, ConstantPulse, HarmonicPulse, CircularGaussianPulseA, GaussianPulse, SincPulse
