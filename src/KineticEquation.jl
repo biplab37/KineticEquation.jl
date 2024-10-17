@@ -12,6 +12,7 @@ include("helper_functions.jl")
 include("dynamics/electron_motion.jl")
 include("dynamics/classical_path.jl")
 include("dynamics/SBEs.jl")
+include("dynamics/dirac_points.jl")
 
 # Kinetic Equation Approach
 include("ode.jl")

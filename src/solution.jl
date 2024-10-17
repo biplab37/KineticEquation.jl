@@ -7,7 +7,7 @@ function f_atk(k1, k2, p::Pulse, initial_value=[0.0, 0.0, 0.0])
     if k1 == 0 && k2 == 0
         return initial_value
     end
-    prob = ODEProblem(odes!, initial_value, (p.start, p.finish), [[k1, k2], p])
+    prob = ODEProblem(odes!, initial_value, (p.start, p.finish), ([k1, k2], p))
     return solve(prob, Tsit5())(p.finish)
 end
 

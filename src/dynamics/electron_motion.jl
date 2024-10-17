@@ -24,7 +24,7 @@ function Uk_dagger(k; a=1.0)
 end
 
 function momentum_evolution(k0, t, A::Function)
-    return k0 .- (2.46 / 6.58) * A(t)
+    return k0 .- A(t)
 end
 
 ## Discretization in time to solve the ODE
