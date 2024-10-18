@@ -5,7 +5,7 @@ DocMeta.setdocmeta!(KineticEquation, :DocTestSetup, :(using KineticEquation); re
 
 makedocs(;
     modules=[KineticEquation],
-    authors="biplab37 <biplabmahato37@gmail.com> and contributors",
+    authors="biplab37 <biplabmahato37@gmail.com>",
     repo="https://github.com/biplab37/KineticEquation.jl/blob/{commit}{path}#{line}",
     sitename="KineticEquation.jl",
     format=Documenter.HTML(;
@@ -19,7 +19,7 @@ makedocs(;
     ]
 )
 
-# deploydocs(;
-#     repo="github.com/biplab37/KineticEquation.jl",
-#     devbranch="main",
-# )
+deploydocs(;
+    repo="github.com/biplab37/KineticEquation.jl",
+    devbranch="main",
+)
